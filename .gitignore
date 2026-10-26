@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# 系统文件
+Thumbs.db
+.DS_Store
+
+# 大体积中间结果（可按需保留）
+# outputs/deg_results.tsv
