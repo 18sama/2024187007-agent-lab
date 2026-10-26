@@ -1,59 +1,50 @@
-# Git 提交记录（本地仓库准备说明）
+# Git 提交记录（本地仓库已建立）
 
-> 说明：本次执行环境（Windows 沙箱）未安装 Git，无法在此处直接运行 `git init`
-> 与 `git commit`。以下为已准备好的本地仓库结构与**精确可复现的命令**，
-> 在有 Git 的机器上逐条执行即可生成与记录一致的提交历史。
+> 说明：本机未把 Git 加入 PATH，但 GitHub Copilot 扩展自带了 Git 2.56.0，
+> 位于 `C:\Users\74383\AppData\Local\github-copilot-git-2.56.0-1\cmd\git.exe`。
+> 已用该 Git 在提交文件夹中初始化本地仓库并完成以下 6 条提交。
+> 唯一未完成的是"推送到 GitHub"（需要你的 GitHub 账号与仓库地址）。
 
-## 仓库结构（已就绪）
+## 仓库结构
 ```
 2024187007-张力元-智能体实践实验一/
-├── .gitignore
-├── README.md
-├── 实验报告.docx
-├── 课后任务清单.md
-├── skills/            # 两个自建 Skill
+├── .git/
+├── .claude/skills/    # 供 Claude Code 识别（/deg-analysis、/medical-dialog-qa）
+├── skills/            # 两个自建 Skill（提交用源）
 ├── reused-skill/      # 现有 Skill 安装改造
 ├── outputs/           # 运行结果
 ├── data/              # 示例数据
 ├── connection_ok.txt
-└── 实验记录.txt
+├── 实验记录.txt
+├── README.md
+├── 实验报告.docx
+└── 课后任务清单.md
 ```
 
-## 计划提交历史（提交说明 / 内容）
-1. `init: 实验一项目骨架与示例数据` — .gitignore、README、data/、示例 txt
-2. `feat: 新增差异表达分析 Skill（deg-analysis）` — skills/deg-analysis/
-3. `feat: 新增医疗对话整理 Skill（medical-dialog-qa）` — skills/medical-dialog-qa/
-4. `results: 差异表达结果表与火山图、对话整理输出` — outputs/
-5. `reuse: 安装改造 scientific-writing Skill` — reused-skill/
-6. `docs: 实验报告与课后任务清单` — 实验报告.docx、课后任务清单.md
+## 实际提交历史（含真实哈希）
+| # | 提交哈希 | 提交说明 | 内容 |
+|---|---|---|---|
+| 1 | `a5aaac3` | init: 实验一项目骨架与示例数据 | .gitignore、README、data/、connection_ok.txt、实验记录.txt |
+| 2 | `de6a571` | feat: 新增差异表达分析 Skill（deg-analysis） | skills/deg-analysis、.claude/skills/deg-analysis |
+| 3 | `9a853c4` | feat: 新增医疗对话整理 Skill（medical-dialog-qa） | skills/medical-dialog-qa、.claude/skills/medical-dialog-qa |
+| 4 | `aa4a408` | results: 差异表达结果表与火山图、对话整理输出 | outputs/ |
+| 5 | `f444b4c` | reuse: 安装改造 scientific-writing Skill | reused-skill/ |
+| 6 | `c1c3d2f` | docs: 实验报告与课后任务清单 | 实验报告.docx、课后任务清单.md、API配置测试清单.md、GIT_COMMIT_RECORD.md |
 
-## 精确命令（在有 Git 的机器上执行）
+## 查看提交
+```bash
+git -C "2024187007-张力元-智能体实践实验一" log --oneline
+```
+
+## 还剩一步：推送到 GitHub
+需要你的 GitHub 账号。先在 GitHub 新建一个空仓库，然后：
 ```bash
 cd "2024187007-张力元-智能体实践实验一"
-git init
-git add .gitignore README.md data connection_ok.txt 实验记录.txt
-git commit -m "init: 实验一项目骨架与示例数据"
-
-git add skills/deg-analysis
-git commit -m "feat: 新增差异表达分析 Skill（deg-analysis）"
-
-git add skills/medical-dialog-qa
-git commit -m "feat: 新增医疗对话整理 Skill（medical-dialog-qa）"
-
-git add outputs
-git commit -m "results: 差异表达结果表与火山图、对话整理输出"
-
-git add reused-skill
-git commit -m "reuse: 安装改造 scientific-writing Skill"
-
-git add 实验报告.docx 课后任务清单.md
-git commit -m "docs: 实验报告与课后任务清单"
-
-# 发布到 GitHub（示例仓库名，按实际修改）
-# git remote add origin https://github.com/<用户名>/medical-dialog.git
-# git push -u origin main
+git remote add origin https://github.com/<你的用户名>/<仓库名>.git
+git push -u origin main
 ```
+推送时若提示认证，用 GitHub 的 Personal Access Token（PAT，`ghp_` 开头）代替密码，**Token 不要发给任何人**。
 
 ## 复现问题记录
-- 本机无 Git：需在装有 Git 的环境按上述命令补齐提交与推送。
-- 示例数据体积较大（gene_counts.tsv 约 4.3MB），推送前确认仓库容量与 .gitignore 策略。
+- 本机 Git 未加入 PATH：本次用 GitHub Copilot 自带的 Git 2.56.0 完成提交。
+- 示例数据体积较大（gene_counts.tsv 约 4.3MB）：若 GitHub 仓库容量受限，可将 `data/` 放入 `.gitignore` 后改为附链接分发。
