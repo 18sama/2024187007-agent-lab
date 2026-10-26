@@ -37,13 +37,22 @@ git -C "2024187007-张力元-智能体实践实验一" log --oneline
 ```
 
 ## 还剩一步：推送到 GitHub
-需要你的 GitHub 账号。先在 GitHub 新建一个空仓库，然后：
-```bash
-cd "2024187007-张力元-智能体实践实验一"
-git remote add origin https://github.com/<你的用户名>/<仓库名>.git
-git push -u origin main
+## 推送到 GitHub（已完成 ✅）
+仓库地址：**https://github.com/18sama/2024187007-agent-lab**
+
+执行方式：
+```powershell
+cd "C:\Users\74383\OneDrive\文档\deepseek-harness\default-workspace\2024187007-张力元-智能体实践实验一"
+& "C:\Users\74383\AppData\Local\github-copilot-git-2.56.0-1\cmd\git.exe" remote add origin https://github.com/18sama/2024187007-agent-lab.git
+& "C:\Users\74383\AppData\Local\github-copilot-git-2.56.0-1\cmd\git.exe" push -u origin main
 ```
-推送时若提示认证，用 GitHub 的 Personal Access Token（PAT，`ghp_` 开头）代替密码，**Token 不要发给任何人**。
+推送结果（节选）：
+```
+Writing objects: 100% (78/78), 6.20 MiB ...
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+```
+说明：`main -> main` 表示推送成功，远程已建立 `main` 分支并与本地跟踪。
 
 ## 复现问题记录
 - 本机 Git 未加入 PATH：本次用 GitHub Copilot 自带的 Git 2.56.0 完成提交。
